@@ -1,101 +1,166 @@
-# Personal Fitness Tracker
+# CITS5505-Group10-Project
+# TrainTogether
 
-## 📌 Project Overview
+A full-stack fitness tracking web application built with Flask, designed to help users stay motivated and empowers users to log, track, and visualize their workout activities, while also socilize with each other.
 
-This web application allows users to register, log in, record their workouts, view workout tutorials, and manage their personal fitness data. Built using Python Flask, the system includes a secure login system, personalized dashboards, and a well-structured database to store user profiles and exercise logs.
+It allows users to:
+- Watch categorized **workout tutorial** videos (cardio & strength)
+- **Log workout data** details such as sport category, duration, and intensity
+- View personal progress through **dynamic visualizations**
+- Engage with other users in the platform through **social** functions
 
-## 🔧 Technologies Used
+---
+Team Members   
 
-- 🐍 Python 3 + Flask
-- 🗃 SQLite (via SQLAlchemy ORM)
-- 🧑 HTML/CSS/JavaScript for front-end
-- 🔐 Login/Signup system
-- 📁 Flask templates and static file serving
+|  UWA Id   | Name  | GitHub |
+|  :----:  | :----:  | :----:  |
+| 23941282  | Jiasen Niu |[JiasenNiu-Max](https://github.com/JiasenNiu-Max) |
+| 23895698  | Jiaxin Shi |[shijarrr](https://github.com/shijarrr) |
+| 24009963  | Harry Zhu |[Harryzmh02](https://github.com/Harryzmh02)|
+| 23421379  | Erqian Chen |[ErqianChen](https://github.com/ErqianChen)|
 
-## 🗂️ Project Structure
+---
+## Environment & Dependencies
 
-```
+- **Python**: 3.10+
+- **Flask**: 2.3.x
+- **Flask-WTF**: 1.1.x
+- **Flask-SQLAlchemy**: 3.0.x
+- **WTForms**: 3.0.x
+- **Jinja2**: 3.1.x
+- **Selenium**: 4.x (for testing)
+- **SQLite**: (default database)
+- **Other**: See `requirements.txt` for the full list.
 
-CITS5505-Group10-Project-main/
-├── app.py                      # Main application entry point
-├── auth.py                    # Authentication handling (login, logout)
-├── record.py                  # Workout recording logic
-├── user\_profile.py            # User profile view/edit logic
-├── models.py                  # SQLAlchemy database models
-├── init\_db.py                 # Database initialization
-├── login\_system/              # HTML + CSS for login system
-│   ├── login.html
-│   ├── signup.html
-│   ├── forgot\_password.html
-│   └── style.css
-├── templates/                 # HTML templates (if applicable)
-├── static/                    # Static resources (JS, images, etc.)
-├── migrations/                # DB migration scripts
-├── requirements.txt           # Python dependencies
-├── instance/secret\_key.txt    # Flask secret key (for session encryption)
-└── \*.html / \*.css / \*.js      # Other UI files
+---
 
-````
+## How to Run
 
-## 🚀 Features
+1. **Clone the repository:**
+   ```
+   git clone https://github.com/ErqianChen/CITS5505-Group10-Project.git
+   cd CITS5505-Group10-Project
+   ```
 
-- User authentication (Signup, Login, Password Reset)
-- Edit and view personal information
-- Add and view workout records
-- Workout tutorial image integration
-- Persistent database (SQLite)
-- Custom styling and user interface
-- Database migration and seed scripts included
+2. **Create and activate a virtual environment:**
+   ```
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
 
-## ▶️ Getting Started
+3. **Install dependencies:**
+   ```
+   pip install -r requirements.txt
+   ```
 
-### 1. Install Dependencies
+4. **(Optional) Initialize the database:**
+   ```
+   python init_db.py
+   ```
+   The database will be available as app.db.
+
+
+5. **Run the application:**
+   ```
+   python app.py
+   ```
+   The app will be available at `http://127.0.0.1:5000/`.
+
+6. **Run the tests:**
+
+### Unit Tests
+
+All Python unit tests are named `test_*.py` and are located in the project root or in the `tests/` directory.  
+To run all unit tests, simply execute:
 
 ```bash
-pip install -r requirements.txt
-````
-
-### 2. Initialize the Database
-
-```bash
-python init_db.py
+pytest
 ```
 
-### 3. Run the Application
+Or to run a specific test file:
 
 ```bash
-python app.py
+pytest tests/test_example.py
 ```
 
-The app will be available at: `http://127.0.0.1:5000`
+### Selenium Tests
 
-## 📸 Screenshots
+Selenium tests are used for automated end-to-end browser testing. Before running, make sure:
 
-* `log_workouts.png` – Workout logging interface
-* `workout_tutorials.png` – Tutorial preview
-* `profile_pic.jpg` – Sample user image
+- Selenium and all dependencies are installed (`pip install -r requirements.txt`)
+- The appropriate WebDriver (e.g., ChromeDriver) is installed and available in your PATH
 
-## 📂 Database Migrations
+To run all Selenium tests:
 
-Included:
+```bash
+pytest tests/selenium/
+```
 
-* `migrations/initial_migration.py`
-* `migrations/insert_user.py`
-* Excel files with exported user and workout data
+Or to run a specific Selenium test file:
 
-## 🔒 Security Note
+```bash
+pytest tests/selenium/test_login.py
+```
 
-* Do not expose `instance/secret_key.txt` in production
-* Consider using Flask-WTF and CSRF protection in future development
+**Note:**
+- It is recommended to start the Flask application server (`python app.py`) before running Selenium tests.
+- Selenium tests will open a browser window automatically. Please do not interact with the browser during the test.
 
-## 🧑‍💻 Contributors
+---
 
-Group 10 – CITS5505 Web Technologies
-(Names can be added here)
+## Team Contributions
 
-## 📄 License
+- **Erqian Chen** 
 
-This project is intended for educational use only.
+  - Main page base framework
+  - Account section implementation: user info logging, browsing history etc
+  - Account section backend-frontend integration
+  - Assisted with login system backend
+  - Path routing and model integration
+
+- **Harry Zhu** 
+
+  - Database schema design and mock data insertion
+  - Login system implementation (Jinja-based frontend)
+  - Record section implementation: data analysis, visualization, leaderboard
+  - Record and Social section backend-frontend integration
+  - Assisted with Path routing and model integration
+  - Blueprints & CSRF token setup
+
+- **Jiasen Niu** 
+
+  - Social section implementation: posts, likes, comments, bookmarks
+  - Test suite development (unit & Selenium tests)
+  - initial data migration and admin user seeding script
+  - Function debugging
+  - Code review and css style refine
+
+- **Jiaxin Shi** 
+
+  - Workout section subpages implementation
+  - Backend-frontend integration, database linkage with logic design
+  - Implemented workout data record entry and fitness tutorial recommendation
+  - Function debugging
+  - Code review and css style refine
 
 
 
+
+---
+
+## Features
+
+- **Valid, well-structured HTML**: All pages use valid HTML, a wide range of semantic elements, and are organized with Jinja2 templates for maintainability and clarity.
+- **Responsive, maintainable CSS**: Custom selectors and classes ensure a modern, visually appealing, and fully responsive design across devices.
+- **Modern JavaScript**: Includes client-side validation, DOM manipulation, and AJAX, following best practices for code quality and user experience.
+- **Intuitive navigation & strong design**: The website offers a clear navigation flow, strong visual identity, and a user-centered experience with clear value.
+- **Comprehensive functionality**: All features from the project brief are fully implemented, including user authentication, workout logging, social feed, leaderboard, and personalized recommendations.
+- **Well-organized Flask backend**: Modular codebase using Blueprints, with clear routing, robust data manipulation, and dynamic page generation.
+- **Robust data models**: Carefully designed database schema, secure authentication, and maintainable models, with evidence of database migrations.
+- **Thorough testing**: Includes unit tests and Selenium tests, covering both backend logic and live server interactions.
+- **Strong security**: Passwords are securely hashed and salted, CSRF tokens protect all forms, and sensitive configuration uses environment variables.
+
+
+---
+
+For more details, see the project documentation and code comments.
